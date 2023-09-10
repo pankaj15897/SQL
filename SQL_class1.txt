@@ -1,0 +1,62 @@
+
+create DATABASE BigDataBootCamp;
+SHOW databases;
+CREATE DATABASE test;
+drop DATABASE test;
+
+use BigDataBootCamp;
+
+DROP TABLE employee;
+CREATE Table if not exists employee
+(
+    id int,
+    name VARCHAR(50),
+    salary DOUBLE,
+    hiring_date DATE
+);
+
+SHOW TABLES;
+SHOW CREATE TABLE employee;
+
+INSERT INTO employee VALUES(1,"pankaj",100000,"2021-06-05");
+INSERT into employee(salary,name,id) VALUES(50000,"Radhe",2);
+--insert multiple rows using single insert command
+INSERT INTO employee VALUES(3,"Nikhil",30000,"2021-07-01"),(4,"Amit",300000,"2021-08-01"),(5,"Kalpesh",300000,"2023-06-01");
+
+SELECT * from employee;
+
+CREATE Table if not exists employee_with_constrain
+(
+    id int NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    salary DOUBLE,
+    hiring_date DATE DEFAULT"2023-09-09",
+    UNIQUE(id),
+    check (salary > 10000)
+);
+
+INSERT INTO employee_with_constrain VALUES(null,"Amit",3000,"2021-06-01")
+
+INSERT INTO employee_with_constrain VALUES(3,null,3000,"2021-06-01")
+
+INSERT INTO employee_with_constrain VALUES(3,"Amit",3000,"2021-06-01")
+
+INSERT INTO employee_with_constrain VALUES(3,"Amit",30000,"2021-06-01")
+
+INSERT INTO employee_with_constrain VALUES(3,"Amit",30000,"2021-06-01")
+
+INSERT INTO employee_with_constrain(id,name,salary) VALUES(4,"Amit",30000)
+
+SELECT * from employee_with_constrain;
+
+CREATE Table if not exists employee_with_constrain_tmp
+(
+    id int NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    salary DOUBLE,
+    hiring_date DATE DEFAULT"2023-09-09",
+    constraint Unique_id UNIQUE(id),
+    constraint salary_check check (salary > 10000)
+);
+
+INSERT INTO employee_with_constrain_tmp VALUES(1,"Amit",3000,"2021-06-01")
