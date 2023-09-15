@@ -1,0 +1,51 @@
+CREATE DATABASE class2_db;
+use class2_db;
+
+CREATE Table if not exists employee(
+    id int,
+    name VARCHAR(50),
+    address VARCHAR(50),
+    city VARCHAR(50)
+);
+
+INSERT into employee VALUES(1,"Pankaj","abc","Pune");
+
+select * from employee;
+
+alter table employee add dob date;
+alter table employee modify column name VARCHAR(100);
+alter Table employee drop column city;
+alter table employee RENAME COLUMN name to full_name;
+alter table employee add constraint id_unique UNIQUE(id);
+insert into employee VALUES(1,"Akash","Delhi","1998-01-01");
+alter Table employee drop constraint id_unique;
+
+---------------------------------------------------------------
+CREATE Table persons(
+    id int,
+    name VARCHAR(50),
+    age INT,
+    constraint pk PRIMARY KEY (id)
+);
+INSERT INTO persons VALUES(1,"Pankaj",26);
+INSERT INTO persons VALUES(null,"Radhe",27);
+--------------------------------------------------------------
+CREATE Table customer(
+    cust_id int,
+    name VARCHAR(50),
+    age int,
+    constraint pk PRIMARY KEY (cust_id)
+);
+
+CREATE Table orders(
+    order_id int,
+    order_num int,
+    customer_id int,
+    constraint pk PRIMARY KEY (order_id),
+    constraint fk FOREIGN KEY (customer_id) REFERENCES customer(cust_id)
+);
+-----------------------------------------------------------------------------------
+SELECT * FROM persons;
+TRUNCATE table persons;
+drop table persons;
+---------------------------------------------------------------------
