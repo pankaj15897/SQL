@@ -45,6 +45,36 @@ CREATE Table orders(
     constraint fk FOREIGN KEY (customer_id) REFERENCES customer(cust_id)
 );
 -----------------------------------------------------------------------------------
+CREATE Table if not exists employee(
+    id int,
+    name VARCHAR(50),
+    age int,
+    hiring_date date,
+    salary int,
+    city VARCHAR(50)
+);
+
+INSERT into employee VALUES(1,"Pankaj",26,"2021-06-01",100000,"Pune");
+INSERT into employee VALUES(2,"Nikhil",27,"2021-06-02",100000,"Mumbai");
+INSERT into employee VALUES(3,"Amit",28,"2021-06-03",100000,"Pune");
+INSERT into employee VALUES(4,"Radhe",24,"2021-06-04",100000,"Banglore");
+INSERT into employee VALUES(5,"Kalpesh",25,"2021-06-05",100000,"Nagar");
+INSERT into employee VALUES(1,"Akash",30,"2021-06-06",100000,"Delhi");
+
+select * from employee;
+select count(*) from employee;
+select count(*) as total_row from employee;
+select name, salary from employee;
+select DISTINCT(hiring_date) distinct_hiring_date from employee;
+select COUNT(distinct(age)) as distinct_age from employee;
+select id,
+       NAME,
+       salary as old_salary,
+       salary*1.20 as new_salary
+from employee;
+
+UPDATE employee set age = 20;
+select * from employee;
 SELECT * FROM persons;
 TRUNCATE table persons;
 drop table persons;
