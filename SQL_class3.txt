@@ -1,0 +1,27 @@
+CREATE DATABASE sql_class3;
+USE sql_class3;
+
+CREATE Table if not exists employee(
+    id int,
+    name VARCHAR(50),
+    age int,
+    hiring_date date,
+    salary int,
+    city VARCHAR(50)
+);
+
+INSERT into employee VALUES(1,"Pankaj",26,"2021-06-01",100000,"Pune");
+INSERT into employee VALUES(2,"Nikhil",27,"2021-06-02",100000,"Mumbai");
+INSERT into employee VALUES(3,"Amit",28,"2021-06-03",100000,"Pune");
+INSERT into employee VALUES(4,"Radhe",24,"2021-06-04",120000,"Banglore");
+INSERT into employee VALUES(5,"Kalpesh",25,"2021-06-05",130000,"Nagar");
+INSERT into employee VALUES(1,"Akash",30,"2021-06-06",140000,"Delhi");
+
+----------------------------------------
+--below is the process to save updated changes in the table
+-- set SQL_SAFE_UPDATES = 0;
+--UPDATE ...
+--COMMIT;
+---------------------------------------
+update employee set age=20,salary=250000 WHERE hiring_date = '2021-06-06';
+SELECT * from employee;
