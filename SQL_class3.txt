@@ -46,3 +46,39 @@ select * from employee ORDER BY name desc;
 select * from employee ORDER BY salary desc,name asc;
 
 select * from employee ORDER BY salary desc limit 1;
+----------------------------------------------------------------
+--list all employee getting salaruies greater than 100000
+SELECT * from employee WHERE salary > 100000;
+SELECT * from employee WHERE age = 20;
+SELECT * from employee WHERE age != 20;
+SELECT * from employee WHERE age <> 20;
+SELECT * from employee where hiring_date = '2021-06-03' and salary = 100000;
+--How to use like operation in where clause
+-- % -> zero,one or more than 1 CHAR
+-- _ -> only one CHAR
+SELECT * from employee WHERE name LIKE 'P%';
+SELECT * from employee WHERE name LIKE '%h';
+SELECT * from employee WHERE name LIKE '_____';
+--How to use is NULL OR IS NOT NULL IN THE WHERE CLAUSE
+INSERT into employee values(10,'Kumar',22,null,100000,'Salgara');
+select * from employee where hiring_date is null;
+
+--Group By--
+CREATE Table orders(
+    cust_id int,
+    order_id int,
+    country VARCHAR(50),
+    state VARCHAR(50)
+);
+
+INSERT into orders VALUES(1,100,'USA','Seattle');
+INSERT into orders VALUES(2,101,'INDIA','Seattle');
+INSERT into orders VALUES(3,102,'USA','WDC');
+INSERT into orders VALUES(2,103,'INDIA','UP');
+INSERT into orders VALUES(5,104,'USA','Seattle');
+INSERT into orders VALUES(4,110,'UK','London');
+INSERT into orders VALUES(16,120,'INDIA','Maharashtra');
+INSERT into orders VALUES(4,109,'INDIA','Bihar');
+select country,order_id,count(*) as order_count from orders GROUP BY country;
+
+select age, sum(salary) as total_salary_By_age from employee GROUP BY age;
