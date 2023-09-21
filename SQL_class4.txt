@@ -1,0 +1,31 @@
+CREATE DATABASE test;
+use test;
+
+--Group By--
+CREATE Table orders(
+    cust_id int,
+    order_id int,
+    country VARCHAR(50),
+    state VARCHAR(50)
+);
+
+INSERT into orders VALUES(1,100,'USA','Seattle');
+INSERT into orders VALUES(2,101,'INDIA','Seattle');
+INSERT into orders VALUES(3,102,'USA','WDC');
+INSERT into orders VALUES(2,103,'INDIA','UP');
+INSERT into orders VALUES(5,104,'USA','Seattle');
+INSERT into orders VALUES(4,110,'UK','London');
+INSERT into orders VALUES(16,120,'INDIA','Maharashtra');
+INSERT into orders VALUES(4,109,'INDIA','Bihar');
+SELECT * from orders;
+update orders set state = 'MP' WHERE order_id = 103;
+select country,order_id,count(*) as order_count from orders GROUP BY country;
+
+--Use Having clause
+--write a query to find a record where only one record placed
+select country from orders GROUP BY country HAVING count(*) = 1;
+--What should be the proper sequence?
+--Where clause and then GROUP BY clause.
+
+--How to use group CONCAT
+-- write a query to print distinct state present in the dataset for each country
